@@ -14,7 +14,7 @@ public class Ellipse implements Actor {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawOval(this.x, this.y, 50, 10);
+        graphics.drawOval(this.x, this.y, 50, 20);
 
     }
 
@@ -23,5 +23,11 @@ public class Ellipse implements Actor {
         this.y += (float) delta / this.speed;
         this.x += (float) delta / this.speed;
 
+        if (this.x > 800) {
+            this.x = 0;
+        }
+        if (this.y > 600) {
+            this.y = 0;
+        }
     }
 }
