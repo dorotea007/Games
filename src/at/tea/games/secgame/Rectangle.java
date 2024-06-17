@@ -25,7 +25,7 @@ public class Rectangle implements Actor {
         graphics.drawRect(this.x, this.y, 10, 10);
     }
 
-    public void update(int delta) {
+    public void update(GameContainer gameContainer, int delta) {
         if (this.direction == DIRECTION.RIGHT) {
             this.x += (float) delta / this.speed;
             if (this.x > 800) {

@@ -1,8 +1,6 @@
 package at.tea.games.secgame;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 
 public class Rocket implements Actor {
 
@@ -28,9 +26,27 @@ public class Rocket implements Actor {
     }
 
     @Override
-    public void update(int delta) {
-        // Erhöhe die x-Position der Rakete um 1
-        this.x++;
+    public void update(GameContainer gameContainer, int delta) {
+        if (gameContainer.getInput().isKeyDown(Input.KEY_RIGHT)) {
+            // Erhöhe die x-Position der Rakete um 1
+            this.x++;
+        }
+        if (gameContainer.getInput().isKeyDown(Input.KEY_LEFT)) {
+            this.x--;
+        }
+        if (gameContainer.getInput().isKeyDown(Input.KEY_UP)) {
+            this.y--;
+        }
+        if (gameContainer.getInput().isKeyDown(Input.KEY_DOWN)) {
+            this.y++;
+        }
+    }
 
+    public float getX() {
+        return x + 57;
+    }
+
+    public float getY() {
+        return y - 10;
     }
 }

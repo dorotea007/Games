@@ -1,5 +1,6 @@
 package at.tea.games.secgame;
 
+import org.lwjgl.Sys;
 import org.newdawn.slick.*;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Random;
 
 public class ObjectsGame extends BasicGame {
     private List<Actor> actors; // Liste der Actors im Spiel
+    private Rocket rocket;
 
     public ObjectsGame(String title) {
         super(title);
@@ -35,6 +37,7 @@ public class ObjectsGame extends BasicGame {
             this.actors.add(ellipse);
 
             Rocket rocket = new Rocket();
+            this.rocket = rocket;
             this.actors.add(rocket);
         }
     }
@@ -43,7 +46,7 @@ public class ObjectsGame extends BasicGame {
     public void update(GameContainer gameContainer, int delta) throws SlickException {
         // Aktualisiere jeden Actor in der Liste
         for (Actor actor : this.actors) {
-            actor.update(delta);
+            actor.update(gameContainer, delta);
         }
     }
 
@@ -52,6 +55,15 @@ public class ObjectsGame extends BasicGame {
         // Zeichne jeden Actor in der Liste
         for (Actor actor : this.actors) {
             actor.render(graphics);
+        }
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_SPACE) {
+            System.out.println("shoot");
+            Cannonball cb = new Cannonball(this.rocket.getX(), this.rocket.getY());
+            this.actors.add(cb);
         }
     }
 
